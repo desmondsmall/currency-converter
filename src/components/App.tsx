@@ -23,26 +23,7 @@ function App() {
         if (!response.ok) {
           setError("Oops, no country data is available.");
         } else {
-          response.json().then((data) => {
-            let countries: Countries[] = [];
-
-            data.forEach((country: any) => {
-              if (country.currencies) {
-                let x = Object.keys(country.currencies)[0];
-                countries.push(
-                  {
-                    name: country.name.common,
-                    flag: country.flag,
-                    currency: Object.keys(country.currencies)[0],
-                    code: country.cca3
-                  }
-                )
-              }
-            })
-
-            countries.sort((a, b) => a.name.localeCompare(b.name));
-            setCountries(countries);
-          });
+          response.json().then((data) => sortCountries(data));
         }
       })
   }, [])
@@ -50,6 +31,27 @@ function App() {
   useEffect(() => {
     setConversionResult(null);
   }, [source, destination, conversionAmount]);
+
+  function sortCountries(data: object[]): void {
+    let countries: Countries[] = [];
+
+    data.forEach((country: any) => {
+      if (country.currencies) {
+        let x = Object.keys(country.currencies)[0];
+        countries.push(
+          {
+            name: country.name.common,
+            flag: country.flag,
+            currency: Object.keys(country.currencies)[0],
+            code: country.cca3
+          }
+        )
+      }
+    })
+
+    countries.sort((a, b) => a.name.localeCompare(b.name));
+    setCountries(countries);
+  }
 
   function reverseCurrencies(): void {
     setSource(destination);
@@ -116,7 +118,7 @@ function App() {
           <div>
             <h4>
               {conversionAmount} {source.split("-").shift()} =
-            </h4>
+              </h4>
             <h3>
               {conversionResult}
               <span>{destination.split("-").shift()}</span>

@@ -37,7 +37,6 @@ function App() {
 
     data.forEach((country: any) => {
       if (country.currencies) {
-        let x = Object.keys(country.currencies)[0];
         countries.push(
           {
             name: country.name.common,
@@ -118,7 +117,7 @@ function App() {
           <div>
             <h4>
               {conversionAmount} {source.split("-").shift()} =
-              </h4>
+            </h4>
             <h3>
               {conversionResult}
               <span>{destination.split("-").shift()}</span>

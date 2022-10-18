@@ -136,6 +136,7 @@ function App() {
           <button onClick={() => setError("")}>X</button>
         </div>
       }
+      <a href="https://github.com/desmondsmall/currency-converter" target="_blank">View Source</a>
     </main>
   );
 }

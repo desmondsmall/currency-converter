@@ -59,3 +59,11 @@ main h1 {
 .result h3 span {
   @apply text-slate-400 pl-3;
 }
+
+a {
+  @apply absolute bottom-1 right-1 mr-4 mb-4 text-lg border-b border-red-400 p-1;
+}
+
+a:hover {
+  @apply bg-red-50 bg-opacity-40 border border-red-400;
+}
